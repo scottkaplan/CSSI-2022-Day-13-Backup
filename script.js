@@ -7,12 +7,21 @@ toppings.forEach((topping) => {
 });
 
  const checkoutButton = document.querySelector(".button");
- const ingredients = document.querySelectorAll(".order .topping");
  const answerHolder = document.querySelector("#total");
- let total = 0;
+
  checkoutButton.addEventListener("click", (e) => {
+  const ingredients = document.querySelectorAll(".order .topping");
+  let total = 0;
    ingredients.forEach((ingredient) => {
      total += Number(ingredient.dataset.price);
    });
    answerHolder.innerHTML = `The total cost of your burger is $${total}`;
+ });
+
+ const navButtons = document.querySelectorAll("#nav .topping");
+ const orderDiv = document.querySelector(".order");
+ navButtons.forEach((navButton) => {
+   navButton.addEventListener("click", () => {
+     orderDiv.innerHTML += `<div class="topping ${navButton.dataset.ingredient}" data-ingredient=${navButton.dataset.ingredient} data-price=${navButton.dataset.price}>${navButton.dataset.ingredient}</div>`;
+   });
  });
