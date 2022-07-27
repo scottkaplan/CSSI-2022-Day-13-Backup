@@ -5,3 +5,14 @@ toppings.forEach((topping) => {
     console.log(topping.dataset);
   });
 });
+
+ const checkoutButton = document.querySelector(".button");
+ const ingredients = document.querySelectorAll(".order .topping");
+ const answerHolder = document.querySelector("#total");
+ let total = 0;
+ checkoutButton.addEventListener("click", (e) => {
+   ingredients.forEach((ingredient) => {
+     total += Number(ingredient.dataset.price);
+   });
+   answerHolder.innerHTML = `The total cost of your burger is $${total}`;
+ });
